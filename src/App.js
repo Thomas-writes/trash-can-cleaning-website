@@ -1,9 +1,10 @@
 import { VStack, Text, ChakraProvider, extendTheme, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import Home from './home';
+import '@fontsource/poppins/400.css';
 
 const theme = extendTheme({
   fonts: {
-    body: "Helvetica, sans-serif"
+    body: "'Poppins', sans-serif"
   },
 });
 
