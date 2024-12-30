@@ -1,9 +1,9 @@
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Text, Stack, Container, Image, VStack } from '@chakra-ui/react';
 import image from './imgs/placeholder.png'
 
-function Home() {
+function Overview() {
     return (
-        <Stack justify="space-between" direction={{ sm: 'column', xl: 'row' }} >
+        <Stack justify="space-between" width='100%' direction={{ sm: 'column', xl: 'row' }} >
             {/*This is column 1*/}
             <VStack width={{ sm: '100%', lg: '33%' }}>
                 <Text as='b' fontSize={{base: "20px", lg: "30px",}}>
@@ -42,16 +42,16 @@ function Home() {
                         <Text color='white' alignContent='center' fontSize={{base: "20px", lg: "30px",}}>
                             Before:
                         </Text>
-                        <Image src={image} width={{base: "60%", lg: "90%",}}/>
+                        <Image src={image} width={{base: "60%", lg: "80%",}}/>
                     </VStack>
                 </Container>
                 <Box height='20px'/>
-                <Container boxShadow='dark-lg' borderRadius='10px'  align='center' width='80vw' bg='blue.600' height={{base: "35vh", lg: "35vh"}}>
+                <Container paddingBottom={{sm: '0', lg: '20px'}} boxShadow='dark-lg' borderRadius='10px'  align='center' width='80vw' bg='blue.600' height={{base: "35vh", lg: "35vh"}}>
                     <VStack height='50%' width={{ sm: '100%', lg: '50%' }}>
                         <Text color='white' fontSize={{base: "20px", lg: "30px",}}>
                             After:
                         </Text>
-                        <Image src={image} width={{base: "60%", lg: "90%",}}/>
+                        <Image src={image} width={{base: "60%", lg: "80%",}}/>
                     </VStack>
                 </Container>
             </VStack>
@@ -91,4 +91,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Overview;

@@ -1,5 +1,6 @@
 import { VStack, Text, ChakraProvider, extendTheme, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import Home from './home';
+import Overview from './overview';
+import Aboutme from './aboutme';
 import '@fontsource/poppins/400.css';
 
 const theme = extendTheme({
@@ -30,13 +31,13 @@ function App() {
           <TabPanels>
             {/*made pages a seperate files for better organization */}
             <TabPanel>
-              <Home/>
+              <Overview/>
             </TabPanel>
             <TabPanel>
               <p>Render Reviews</p>
             </TabPanel>
             <TabPanel>
-              <p>Render About Me</p>
+              <Aboutme/>
             </TabPanel>
           </TabPanels>
         </Tabs>
