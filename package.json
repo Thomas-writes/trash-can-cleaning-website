@@ -12,6 +12,7 @@
     "crypto-browserify": "^3.12.1",
     "dotenv": "^16.4.7",
     "framer-motion": "^6.0.0",
+    "mongodb": "^6.12.0",
     "next": "^15.1.4",
     "next-themes": "^0.4.4",
     "os-browserify": "^0.3.0",
@@ -25,11 +26,11 @@
     "util": "^0.12.5"
   },
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint"
-},
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -2,7 +2,8 @@ import { Box, Input, Textarea, VStack, Stack, Text, Container, Button } from '@c
 
 function Reviews() {
 
-    const handleClick = () => {
+    const handleClick = async (e) => {
+        e.preventDefault();
         var fname = document.getElementById("fname").value;
         var lname = document.getElementById("lname").value;
         var review = document.getElementById("review").value;
@@ -11,11 +12,32 @@ function Reviews() {
             alert('Please fill in all fields.');
             return;
         }
+        
+        const data = {
+            fname,
+            lname,
+            review,
+        };
+
+        const response = await fetch('/api/insertdata.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            setMessage('Data inserted successfully!');
+        } else {
+            setMessage(result.message || 'Something went wrong.');
+        }
 
         document.getElementById("fname").value = '';
         document.getElementById("lname").value = '';
         document.getElementById("review").value = '';
-        alert('Values stored');
+        alert('Done');
       };
 
     return (
