@@ -3,7 +3,7 @@ import Overview from './overview';
 import Aboutme from './aboutme';
 import Reviews from './reviews';
 import '@fontsource/poppins/400.css';
-
+import React, { useState } from 'react';
 
 const theme = extendTheme({
   fonts: {
@@ -19,7 +19,24 @@ const theme = extendTheme({
   },
 });
 
+
+
+
 function App() {
+  
+  const [reviewsData, setReviewsData] = useState([]);
+
+  const openPage = async () => {
+    const reviews = await fetch('/api/insertdata', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+    });
+    setReviewsData(reviews)
+    console.log(reviews)
+  }
+
   return (
     <ChakraProvider theme = {theme}>
       <VStack spacing={0}>
@@ -31,7 +48,7 @@ function App() {
         <Tabs height='10vh' width='100%' variant='solid'>
           <TabList>
             <Tab color = 'white' bg = 'green.700' _selected={{ color: 'white', bg: 'blue.600' }} fontSize={{base: "20px", md: "30px", lg: "40px",}} width='33vw'>Overview</Tab>
-            <Tab color = 'white' bg = 'green.700' _selected={{ color: 'white', bg: 'blue.600' }} fontSize={{base: "20px", md: "30px", lg: "40px",}} width='34vw'>Reviews</Tab>
+            <Tab color = 'white' bg = 'green.700' _selected={{ color: 'white', bg: 'blue.600' }} fontSize={{base: "20px", md: "30px", lg: "40px",}} width='34vw' onClick={openPage}>Reviews</Tab>
             <Tab color = 'white' bg = 'green.700' _selected={{ color: 'white', bg: 'blue.600' }} fontSize={{base: "20px", md: "30px", lg: "40px",}} width='33vw'>About Me</Tab>
           </TabList>
           <TabPanels>
@@ -40,7 +57,7 @@ function App() {
               <Overview/>
             </TabPanel>
             <TabPanel>
-              <Reviews/>
+              <Reviews reviews={reviewsData}/>
             </TabPanel>
             <TabPanel>
               <Aboutme/>

@@ -31,7 +31,6 @@ export default async function handler(req, res) {
     try {
       // Connect to MongoDB
       await client.connect();
-      console.log('Connected to MongoDB');
   
       // Select the database and collection
       const db = client.db('all-reviews');
@@ -39,11 +38,11 @@ export default async function handler(req, res) {
   
       // Fetch all reviews
       const reviews = await collection.find().toArray();
-      console.log('Fetched reviews:', reviews);
+      console.log(reviews)
       
-      return
+      return res.status(200).json({ reviews }); 
     } catch (error) {
-      console.log('Error fetching data:', error);
+      return res.status(500).json({ message: 'Something went wrong!', error: error.message });
     }
   }
 }

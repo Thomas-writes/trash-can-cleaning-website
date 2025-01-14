@@ -1,6 +1,8 @@
 import { Box, Input, Textarea, VStack, Stack, Text, Container, Button } from '@chakra-ui/react';
 
-function Reviews() {
+const Reviews = ({ reviews }) => {
+    
+    console.log(reviews)
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -27,12 +29,7 @@ function Reviews() {
             body: JSON.stringify(data),
         });
 
-        const reviewsPromise = await fetch('/api/insertdata', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-        });
+
 
         const result = await response.json();
         if (response.ok) {
@@ -45,11 +42,10 @@ function Reviews() {
             console.log(result.message || 'Something went wrong.');
             alert('Please try again')
         }
-
-        
       };
-
+    
     return (
+        
         <Stack width='100%' justify="space-between" direction={{ sm: 'column', xl: 'row' }}>
             <VStack align='center' width={{base: "100%",xl: "50%",}}>
                 <Container align='center' boxShadow='dark-lg' borderRadius='10px'  bg='green.600' width='80vw' padding='10px'>
@@ -87,6 +83,23 @@ function Reviews() {
                         <Text cursor="default" color='white'  fontSize={{base: "30px", xl:"40px"}}>
                             All Reviews:
                         </Text>
+                        <Box p={4}>
+                        <Text fontSize="xl" fontWeight="bold">Reviews</Text>
+                        {reviews && reviews.length > 0 ? (
+                            reviews.map((review) => (
+                            <Box key={review._id.toString()} mb={4} p={2} border="1px" borderColor="gray.200" borderRadius="md">
+                                <Text fontSize="lg" fontWeight="semibold">
+                                    {review.fname} {review.lname}
+                                </Text>
+                                <Text>{review.review}</Text>
+                            </Box>
+                            ))
+                        ) : (
+                            console.log(reviews)
+                            <Text>No reviews available.</Text>
+                        )}
+                        </Box>
+
                     </VStack>
                 </Container>
             </VStack>
