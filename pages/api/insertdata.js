@@ -7,7 +7,8 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const { fname, lname, review } = req.body;
-
+      
+      console.log(req.body);
       // Connect to the MongoDB database
       await client.connect();
       const db = client.db('all-reviews');
@@ -24,6 +25,25 @@ export default async function handler(req, res) {
 
     } catch (error) {
       res.status(500).json({ message: 'Something went wrong!', error: error.message });
+    }
+  }
+  else if (req.method === 'GET') {
+    try {
+      // Connect to MongoDB
+      await client.connect();
+      console.log('Connected to MongoDB');
+  
+      // Select the database and collection
+      const db = client.db('all-reviews');
+      const collection = db.collection('name-review');
+  
+      // Fetch all reviews
+      const reviews = await collection.find().toArray();
+      console.log('Fetched reviews:', reviews);
+      
+      return
+    } catch (error) {
+      console.log('Error fetching data:', error);
     }
   }
 }

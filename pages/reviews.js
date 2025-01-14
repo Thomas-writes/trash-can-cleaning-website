@@ -19,7 +19,7 @@ function Reviews() {
             review,
         };
 
-        const response = await fetch('/api/insertdata.js', {
+        const response = await fetch('/api/insertdata', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -27,17 +27,26 @@ function Reviews() {
             body: JSON.stringify(data),
         });
 
+        const reviewsPromise = await fetch('/api/insertdata', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        });
+
         const result = await response.json();
         if (response.ok) {
-            setMessage('Data inserted successfully!');
+            console.log('Data inserted successfully!');
+            document.getElementById("fname").value = '';
+            document.getElementById("lname").value = '';
+            document.getElementById("review").value = '';
+            alert('Done');
         } else {
-            setMessage(result.message || 'Something went wrong.');
+            console.log(result.message || 'Something went wrong.');
+            alert('Please try again')
         }
 
-        document.getElementById("fname").value = '';
-        document.getElementById("lname").value = '';
-        document.getElementById("review").value = '';
-        alert('Done');
+        
       };
 
     return (

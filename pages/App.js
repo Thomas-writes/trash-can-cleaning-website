@@ -35,7 +35,7 @@ function App() {
             <Tab color = 'white' bg = 'green.700' _selected={{ color: 'white', bg: 'blue.600' }} fontSize={{base: "20px", md: "30px", lg: "40px",}} width='33vw'>About Me</Tab>
           </TabList>
           <TabPanels>
-            {/*made pages a seperate files for better organization */}
+            {/*made tabs seperate files for better organization */}
             <TabPanel>
               <Overview/>
             </TabPanel>
