@@ -1,8 +1,7 @@
 import { Box, Input, Textarea, VStack, Stack, Text, Container, Button } from '@chakra-ui/react';
 
 const Reviews = ({ reviews }) => {
-    
-    console.log(reviews)
+    console.log("reviews state:", reviews);
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -77,29 +76,28 @@ const Reviews = ({ reviews }) => {
                 </Container>
             </VStack>
             <Box height='40px'/>
-            <VStack align='center' width={{base: "100%",xl: "50%",}}>
+            <VStack width={{base: "100%",xl: "50%",}}>
                 <Container boxShadow='dark-lg' borderRadius='10px'  bg='blue.600' width='80vw' height='fit-content' padding='10px'>
                     <VStack>
                         <Text cursor="default" color='white'  fontSize={{base: "30px", xl:"40px"}}>
                             All Reviews:
                         </Text>
                         <Box p={4}>
-                        <Text fontSize="xl" fontWeight="bold">Reviews</Text>
-                        {reviews && reviews.length > 0 ? (
+                        {0 > 0 ? (
                             reviews.map((review) => (
-                            <Box key={review._id.toString()} mb={4} p={2} border="1px" borderColor="gray.200" borderRadius="md">
-                                <Text fontSize="lg" fontWeight="semibold">
-                                    {review.fname} {review.lname}
-                                </Text>
-                                <Text>{review.review}</Text>
-                            </Box>
+                                <Box key={review._id.toString()} mb={4} p={2} border="1px" borderColor="gray.200" borderRadius="md">
+                                    <Text fontSize="lg" fontWeight="semibold">
+                                        {review.fname} {review.lname}
+                                    </Text>
+                                    <Text>{review.review}</Text> 
+                                </Box>
                             ))
                         ) : (
-                            console.log(reviews)
-                            <Text>No reviews available.</Text>
+                            <Text textAlign='left' cursor="default" color='white' fontSize={{base: "20px", xl:"30px"}}>
+                                No reviews available.
+                            </Text>
                         )}
                         </Box>
-
                     </VStack>
                 </Container>
             </VStack>

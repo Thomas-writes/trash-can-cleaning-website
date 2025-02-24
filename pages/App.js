@@ -3,7 +3,7 @@ import Overview from './overview';
 import Aboutme from './aboutme';
 import Reviews from './reviews';
 import '@fontsource/poppins/400.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const theme = extendTheme({
   fonts: {
@@ -26,17 +26,44 @@ function App() {
   
   const [reviewsData, setReviewsData] = useState([]);
 
+  useEffect(() => {
+    console.log("useEffect is running");
+  
+    const fetchReviews = async () => {
+      const response = await fetch('/api/insertdata', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        const reviews = await response.json();
+        console.log('Fetched reviews:', reviews);
+        setReviewsData(reviews);
+      } else {
+        console.error('Failed to fetch reviews', response);
+      }
+    };
+  
+    fetchReviews();
+  }, []);
+  
+
   const openPage = async () => {
-    const reviews = await fetch('/api/insertdata', {
+    const response = await fetch('/api/insertdata', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
     });
-    setReviewsData(reviews)
-    console.log(reviews)
-  }
 
+    const reviews = await response.json();
+
+    setReviewsData(reviews)
+  }
+  
+  console.log("reviewsData state:", reviewsData);
   return (
     <ChakraProvider theme = {theme}>
       <VStack spacing={0}>

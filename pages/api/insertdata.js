@@ -3,6 +3,7 @@ import { MongoClient } from 'mongodb';
 const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri);
 
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
@@ -38,7 +39,6 @@ export default async function handler(req, res) {
   
       // Fetch all reviews
       const reviews = await collection.find().toArray();
-      console.log(reviews)
       
       return res.status(200).json({ reviews }); 
     } catch (error) {
